@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- link board.css -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            text-align: center;
+            color: #333;
+        }
+
+        .exit {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .exit:hover {
+            background-color: #555;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .menu > div {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider {
+            width: 200px;
+            margin-left: 10px;
+        }
+    </style>
+        <link rel="stylesheet" href="./lib/CSS/board.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Chess</h1>
+            <div class="menu">
+                <div onclick="startGame('ai')">Player Vs AI</div>
+                <div onclick="startGame('player')">Player Vs Player</div>
+                <div onclick="showSettings()">Settings</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for chess game logic
+        var lightColor = '#f2f2f2';
+        var darkColor = '#333';
+        function startGame(mode) {
+            // Clear the container
+            document.querySelector('.container').innerHTML = '';
+
+            // Create the chessboard
+            const board = document.createElement('div');
+            board.classList.add('board');
+
+            // Create the squares
+          
+            const chessboard = [];
+            for (let row = 0; row < 8; row++) {
+                chessboard[row] = [];
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+
+                    // Set the background color for alternating squares
+                    if ((row + col) % 2 === 0) {
+                        square.style.backgroundColor = lightColor
+                    } else {
+                        square.style.backgroundColor = darkColor;
+                    }
+
+                    // Add the piece icon to the square
+                    const piece = getPiece(row, col);
+                    if (piece !== '') {
+                        square.innerHTML = `<span class="piece">${piece}</span>`;
+                    }
+
+                    chessboard[row][col] = square;
+                    board.appendChild(square);
+                }
+            }
+
+            // Append the board to the container
+            document.querySelector('.container').appendChild(board);
+
+            // Add game logic based on the selected mode
+            if (mode === 'ai') {
+                // Add AI game logic
+            } else if (mode === 'player') {
+                // Add player vs player game logic
+            }
+        }
+
+        // Function to get the piece icon based on row and column
+        function getPiece(row, col) {
+            if (row === 1) {
+                return '&#9823;'; // Pawn (♙)
+            } else if (row === 6) {
+                return '&#9817;'; // Pawn (♟)
+            }
+
+            if (row === 0 || row === 7) {
+                if (col === 0 || col === 7) {
+                    return '&#9814;'; // Rook (♖)
+                } else if (col === 1 || col === 6) {
+                    return '&#9816;'; // Knight (♘)
+                } else if (col === 2 || col === 5) {
+                    return '&#9815;'; // Bishop (♗)
+                } else if (col === 3) {
+                    return '&#9812;'; // King (♔)
+                } else if (col === 4) {
+                    return '&#9813;'; // Queen (♕)
+                }
+            }
+
+            return '';
+        }
+
+        function showMenu() {
+            // Clear the container
+            document.querySelector('.container').innerHTML = '';
+
+            // Create the menu
+            const menu = document.createElement('div');
+            menu.classList.add('box');
+            menu.innerHTML = `
+                <h1>Chess</h1>
+                <div class="menu">
+                    <div onclick="startGame('ai')">Player Vs AI</div>
+                    <div onclick="startGame('player')">Player Vs Player</div>
+                    <div onclick="showSettings()">Settings</div>
+                </div>
+            `;
+
+            // Append the menu to the container
+            document.querySelector('.container').appendChild(menu);
+        }
+
+        function showSettings() {
+    // Clear the container
+    const container = document.querySelector('.container');
+    container.innerHTML = '';
+
+    // Create the settings menu
+    const settingsMenu = document.createElement('div');
+    settingsMenu.classList.add('box');
+    settingsMenu.innerHTML = `
+        <h1>Settings</h1>
+        <div class="slider-container">
+            <label for="boardColor">Change Board Color:</label>
+            <input type="range" id="boardColor" class="slider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+        <div class="menu">
+            <div onclick="showMenu()">Back</div>
+        </div>
+    `;
+
+    // Append the settings menu to the container
+    container.appendChild(settingsMenu);
+
+    // Add event listener for the board color slider
+    const boardColorSlider = settingsMenu.querySelector('#boardColor');
+boardColorSlider.addEventListener('input', function() {
+    const value = boardColorSlider.value;
+    const hue = Math.round(value * 40);
+    lightColor = `hsl(${hue}, 80%, 90%)`;
+    darkColor = `hsl(${hue}, 40%, 60%)`;
+    // Update the background color of squares on the chessboard
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square, index) => {
+        if ((Math.floor(index / 8) + index) % 2 === 0) {
+            square.style.backgroundColor = lightColor;
+        } else {
+            square.style.backgroundColor = darkColor;
+        }
+    });
+});
+}
+    </script>
+</body>
+</html>
