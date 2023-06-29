@@ -1,3 +1,4 @@
+/* CSS styles here */
 .outer-container {
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@
   .square {
     width: 50px;
     height: 50px;
-    position: relative; 
+    position: relative;
   }
   
   .label {
@@ -31,7 +32,7 @@
   }
   
   .label-text {
-    color: #000; 
+    color: #000;
   }
   
   .labels {
@@ -46,11 +47,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: transform 0.2s; 
+    transition: transform 0.2s;
   }
   
   .square:hover .piece {
-    transform: translate(-50%, -50%) scale(1.1); 
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .piece:active {
+    opacity: 0;
   }
   
   .piece.white {
@@ -59,5 +64,24 @@
   
   .piece.black {
     color: #000;
+  }
+  
+  .exit-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .exit-button:hover {
+    background-color: #e53d30;
   }
   
