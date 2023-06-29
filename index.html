@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./lib/CSS/board.css" />
     <script src="./lib/js/chess.js"></script>
-    <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
     <style>
       body {
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
       }
 
-      .container {
+
+      .container { 
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -50,6 +51,9 @@
         align-items: center;
         margin-top: 20px;
       }
+        .menu > div:hover {
+            transform: scale(1.1);
+        }
 
       .menu > div {
         margin-bottom: 10px;
@@ -77,7 +81,8 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="loadSettings()">
+    <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
     <div class="container">
       <div class="box">
         <h1>Chess</h1>
@@ -93,84 +98,124 @@
     </div>
 
     <script>
-      // JavaScript code for chess game logic
-      var lightColor = "#f2f2f2";
-      var darkColor = "#333";
-
-
-      function showMenu() {
-        // Clear the container
-        const container = document.querySelector(".container");
-        container.innerHTML = "";
-
-        // Create the menu
-        const menu = document.createElement("div");
-        menu.classList.add("box");
-        menu.innerHTML = `
-          <h1>Chess</h1>
-          <div class="menu">
-            <div onclick="startGame('ai')">Player Vs AI</div>
-            <div onclick="startGame('player')">Player Vs Player</div>
-            <div onclick="showSettings()">Settings</div>
-            <div id="version">
-          <p>Version 0.0.1 Alpha</p>
-        </div>
-          </div>
-        `;
-
-        // Append the menu to the container
-        container.appendChild(menu);
-      }
-
-      function showSettings() {
-        // Clear the container
-        const container = document.querySelector(".container");
-        container.innerHTML = "";
-
-        // Create the settings menu
-        const settingsMenu = document.createElement("div");
-        settingsMenu.classList.add("box");
-        settingsMenu.innerHTML = `
-          <h1>Settings</h1>
-          <div class="slider-container">
-            <label for="boardColor">Change Board Color:</label>
-            <input type="range" id="boardColor" class="slider" min="0" max="1" step="0.1" value="0.5">
-          </div>
-          <div class="menu">
-            <div onclick="showMenu()">Back</div>
-          </div>
-        `;
-
-        // Append the settings menu to the container
-        container.appendChild(settingsMenu);
-
-        // Add event listener for the board color slider
-        const boardColorSlider = settingsMenu.querySelector("#boardColor");
-        boardColorSlider.addEventListener("input", function () {
-          const value = boardColorSlider.value;
-          const hue = Math.round(value * 40);
-          lightColor = `hsl(${hue}, 80%, 90%)`;
-          darkColor = `hsl(${hue}, 40%, 60%)`;
-          // Update the background color of squares on the chessboard
-          const squares = document.querySelectorAll(".square");
-          squares.forEach((square, index) => {
-            if ((Math.floor(index / 8) + index) % 2 === 0) {
-              square.style.backgroundColor = lightColor;
-            } else {
-              square.style.backgroundColor = darkColor;
-            }
-          });
-          // Save the slider value to localStorage
-          localStorage.setItem("boardColor", value);
-        });
-
-        // Get the slider value from localStorage and set it as the initial value
-        const savedValue = localStorage.getItem("boardColor");
-        if (savedValue) {
-          boardColorSlider.value = savedValue;
-          boardColorSlider.dispatchEvent(new Event("input"));
+        // JavaScript code for chess game logic
+        const colors = {
+          red: { light: "#ffcccc", dark: "#cc0000" },
+          yellow: { light: "#ffffcc", dark: "#cccc00" },
+          green: { light: "#ccffcc", dark: "#00cc00" },
+          blue: { light: "#ccccff", dark: "#0000cc" },
+          purple: { light: "#ffccff", dark: "#cc00cc" },
+          brown: { light: "#d2b48c", dark: "#8b4513" },
+          black: { light: "#c0c0c0", dark: "#000000" }
+        };
+      
+        let lightColor = "#f2f2f2";
+        let darkColor = "#333";
+  
+        function loadSettings() {
+          const savedBoardColor = localStorage.getItem("boardColor");
+          const savedDarkMode = localStorage.getItem("darkMode");
+          const savedVolume = localStorage.getItem("volume");
+      
+          if (savedBoardColor) {
+            const color = colors[savedBoardColor];
+            lightColor = color.light;
+            darkColor = color.dark;
+          }
+      
+          if (savedDarkMode) {
+            document.body.style.backgroundColor = savedDarkMode === "true" ? darkColor : lightColor;
+          }
+      
+          if (savedVolume) {
+            document.querySelector("audio").volume = savedVolume;
+          }
         }
-      }
-    </script>
+      
+        function showMenu() {
+          const container = document.querySelector(".container");
+          container.innerHTML = `
+            <div class="box">
+              <h1>Chess</h1>
+              <div class="menu">
+                <div onclick="startGame('ai')">Player Vs AI</div>
+                <div onclick="startGame('player')">Player Vs Player</div>
+                <div onclick="showSettings()">Settings</div>
+                <div id="version">
+                  <p>Version 0.0.1 Alpha</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      
+        function showSettings() {
+          const container = document.querySelector(".container");
+          container.innerHTML = `
+            <div class="box">
+              <h1>Settings</h1>
+              <div class="color-container">
+                <label for="boardColor">Change Board Color:</label>
+                <select id="boardColor">
+                  <option value="red">Red</option>
+                  <option value="yellow">Yellow</option>
+                  <option value="green">Green</option>
+                  <option value="blue">Blue</option>
+                  <option value="purple">Purple</option>
+                  <option value="brown">Brown</option>
+                  <option value="black">Black</option>
+                </select>
+              </div>
+              <div class="slider-container">
+                <label for="volume">Change Volume:</label>
+                <input type="range" id="volume" class="slider" min="0" max="1" step="0.1" value="0.5">
+              </div>
+              <div class="toggle-container">
+                <label for="darkMode">Dark Mode:</label>
+                <input type="checkbox" id="darkMode" class="toggle">
+              </div>
+              <div class="menu">
+                <div onclick="showMenu()">Back</div>
+              </div>
+            </div>
+          `;
+      
+          const darkModeToggle = document.querySelector("#darkMode");
+          const volumeSlider = document.querySelector("#volume");
+          const boardColorSelect = document.querySelector("#boardColor");
+          const audio = document.querySelector("audio");
+      
+          darkModeToggle.checked = localStorage.getItem("darkMode") === "true";
+          volumeSlider.value = localStorage.getItem("volume") || 0.5;
+          boardColorSelect.value = localStorage.getItem("boardColor") || "black";
+      
+          darkModeToggle.addEventListener("change", () => {
+            document.body.style.backgroundColor = darkModeToggle.checked ? darkColor : lightColor;
+            localStorage.setItem("darkMode", darkModeToggle.checked);
+          });
+      
+          volumeSlider.addEventListener("input", () => {
+            audio.volume = volumeSlider.value;
+            localStorage.setItem("volume", volumeSlider.value);
+          });
+      
+          boardColorSelect.addEventListener("change", () => {
+            const color = colors[boardColorSelect.value];
+            lightColor = color.light;
+            darkColor = color.dark;
+      
+            document.querySelectorAll(".square").forEach((square, index) => {
+              square.style.backgroundColor = (Math.floor(index / 8) + index) % 2 === 0 ? lightColor : darkColor;
+            });
+      
+            localStorage.setItem("boardColor", boardColorSelect.value);
+          });
+      
+          boardColorSelect.dispatchEvent(new Event("change"));
+        }
+        const audio = document.querySelector("audio");
+
+        window.addEventListener("load", loadSettings);
+      </script>
   </body>
 </html>

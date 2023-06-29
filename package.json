@@ -33,5 +33,14 @@
   },
   "directories": {
     "lib": "lib"
+  },
+  "build": {
+    "appId": "chess",
+    "mac": {
+      "icon": "app.ico"
+    },
+    "win": {
+      "icon": "app.ico"
+    }
   }
 }
