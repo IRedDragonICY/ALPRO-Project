@@ -1,3 +1,4 @@
+const path = require('path');
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
@@ -6,6 +7,8 @@ const createWindow = () => {
     height: 600,
     autoHideMenuBar: true,
     icon: 'app.ico',
+    webPreferences: {
+      preload: path.join(__dirname, './lib/js/preload.js')     }
   })
   win.loadFile('index.html')
 }
@@ -25,4 +28,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
