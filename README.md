@@ -73,6 +73,7 @@ This project is developed and maintained by the following contributors:
 
 - [Mohammad Farid Hendianto]([https://github.com/johndoe](https://github.com/IRedDragonICY))
 - [Rendie Abdi Saputra]([https://github.com/janesmith](https://github.com/RendieRYU))
+
 We would like to express our gratitude to Dr. Ardiansyah S.T., M.Cs for his guidance and expertise throughout the development of this project.
 
 
