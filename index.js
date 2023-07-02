@@ -1,30 +1,62 @@
-const path = require('path');
-const { app, BrowserWindow } = require('electron')
+const path = require("path");
+const { app, BrowserWindow } = require("electron");
+
+let splash;
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     autoHideMenuBar: true,
-    icon: 'app.ico',
+    icon: "app.ico",
+    show: false, // tambahkan ini
     webPreferences: {
-      preload: path.join(__dirname, './lib/js/preload.js')     }
-  })
-  win.loadFile('index.html')
-}
+      preload: path.join(__dirname, "lib/js/preload.js"),
+    },
+  });
+
+  splash = new BrowserWindow({
+    width: 400,
+    height: 300,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    resizable: false,
+    maximizable: false,
+    minimizable: false,
+    fullscreenable: false,
+    transparent: true,
+    frame: false,
+    roundedCorners: true, 
+    webPreferences: {
+      nodeIntegration: true, 
+    },
+  });
+  
+  splash.loadFile("splash.html");
+  win.loadFile("index.html");
+
+  
+  win.once("ready-to-show", () => {
+    setTimeout(function () {
+      splash.destroy();
+      win.show();
+    }, 2000); 
+  });
+};
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-})
+  });
+});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});
