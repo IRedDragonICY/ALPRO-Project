@@ -2,15 +2,19 @@ module.exports = {
   packagerConfig: {
     asar: true,
   },
-  rebuildConfig: {},
+  rebuildConfig: {
+  },
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        setupIcon: './lib/iamgs/appIcon/chess.ico',
+      },
     },
     {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
+      icon: './lib/imgs/appIcon/chess.icns',
     },
     {
       name: '@electron-forge/maker-deb',
