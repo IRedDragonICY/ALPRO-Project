@@ -1,44 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Chess</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./lib/CSS/chessBoard.css" />
-    <link rel="stylesheet" href="./lib/CSS/index.css" />
-    <style>
-    </style>
-  </head>
-  <body onload="loadSettings()">
-    <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
-    <div class="container">
-      <div class="box">
-        <h1 onclick="showCredits()">Chess</h1>
-        <div class="container">
-          <div class="menu" onclick="startGame('aivsplayer')">
-            <img src="./lib/imgs/menuIcon/versusAI.png" alt="Image 1">
-            <div>Player Vs AI</div>
-          </div>
-          <div class="menu" onclick="startGame('playervsplayer')">
-            <img src="./lib/imgs/menuIcon/versusPlayer.png" alt="Image 2">
-            <div>Player Vs Player</div>
-          </div>
-          <div class="menu" onclick="showSettings()">
-            <img src="./lib/imgs/menuIcon/settings.png" alt="Image 3">
-            <div>Settings</div>
-          </div>
-          <div class="menu" onclick="window.close()">
-            <img src="./lib/imgs/menuIcon/exit.png" alt="Image 4">
-            <div>Exit</div>
-          </div>
+
+<head>
+  <title>Chess</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./lib/CSS/chessBoard.css" />
+  <link rel="stylesheet" href="./lib/CSS/index.css" />
+  <style>
+
+  </style>
+</head>
+
+<body onload="loadSettings()">
+  <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
+  <div class="container">
+    <div class="box">
+      <h1 onclick="showCredits()">Chess</h1>
+      <img onclick="showCredits()" class="logo" src="./lib/imgs/appIcon/chess.png" alt="logo" />
+      <div class="container">
+        <div class="menu" onclick="startGame('aivsplayer')">
+          <img src="./lib/imgs/menuIcon/versusAI.png" alt="Image 1">
+          <div>Player Vs AI</div>
         </div>
-        <div id="version">
-          <p>Version 0.0.5</p>
+        <div class="menu" onclick="startGame('playervsplayer')">
+          <img src="./lib/imgs/menuIcon/versusPlayer.png" alt="Image 2">
+          <div>Player Vs Player</div>
+        </div>
+        <div class="menu" onclick="showSettings()">
+          <img src="./lib/imgs/menuIcon/settings.png" alt="Image 3">
+          <div>Settings</div>
+        </div>
+        <div class="menu" onclick="window.close()">
+          <img src="./lib/imgs/menuIcon/exit.png" alt="Image 4">
+          <div>Exit</div>
         </div>
       </div>
+      <div id="version">
+        <p>Version 0.0.5</p>
+      </div>
     </div>
-    <script src="./lib/js/menu.js"></script>
-    <script src="./lib/js/jquery-3.2.1.min.js"></script>
-    <script src="./lib/js/chess.js"></script>
-    <script src="./lib/js/chessMode.js"></script>
-  </body>
+  </div>
+  <div class="credits hidden">
+    <div class="credits-content">
+      <div class="credits-header">
+        <h2>Credits</h2>
+        <span class="close" onclick="$('.credits').fadeOut()">×</span>
+      </div>
+      <div class="credits-body">
+        <p>Developed by
+        <ul>
+          <li><strong>Programming:</strong><br> Mohammad Farid Hendianto, Rendie Abdi Saputra</li>
+          <li><strong>Paper:</strong><br> Princessca Yudha Cahayanie, Fadhil Raifan Andika, Syifa' Ayu Sulistyowati</li>
+          <li><strong>Presentation:</strong><br> Dzakiyyah Hanan Izdihar, Laila Nur 'Azizah</li>
+          <li><strong>Poster:</strong><br> Kemas Khairunsyah</li>
+          <li><strong>Production:</strong><br> Reyhanssan Islamey, M. Jaka Nopriansyah</li>
+        </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="./lib/js/native-libraries.js"></script>
+  <script src="./lib/js/index.js"></script>
+  <script src="./lib/js/jquery-3.2.1.min.js"></script>
+  <script src="./lib/js/chess.js"></script>
+  <script src="./lib/js/chessMode.js"></script>
+  <script>
+    function showCredits() {
+      $(".credits").fadeIn();
+      $(".credits").removeClass("hidden");
+
+      $(".credits").css("position", "absolute");
+      $(".credits").css("z-index", "999");
+
+      const width = $(".credits").width();
+      const height = $(".credits").height();
+      const left = $(window).width() / 2 - width / 2;
+      const top = $(window).height() / 2 - height / 2;
+
+      $(".credits").css("left", left + "px");
+      $(".credits").css("top", top + "px");
+    }
+    $(".menu").hover(function () {
+      if ($(this).is(":hover")) {
+        const audio = new Audio("./lib/audio/hover-menu.mp3");
+        audio.play();
+      }
+    });
+  </script>
+</body>
+
 </html>
