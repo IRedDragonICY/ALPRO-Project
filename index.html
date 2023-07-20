@@ -30,7 +30,7 @@
           <img src="./lib/imgs/menuIcon/settings.png" alt="settings">
           <div>Settings</div>
         </div>
-        <div class="menu" onclick="window.close()">
+        <div class="menu" onclick="window.close();">
           <img src="./lib/imgs/menuIcon/exit.png" alt="exit">
           <div>Exit</div>
         </div>
@@ -81,14 +81,20 @@
       $(".credits").css("top", top + "px");
     }
 
-// simpan referensi audio di luar fungsi 
 let hoverAudio = new Audio("./lib/audio/hover-menu.mp3");
 
-// gunakan event delegation pada document
 $(document).on("mouseenter", ".menu", function() {
-  hoverAudio.pause(); // menghentikan audio sebelumnya
-  hoverAudio.currentTime = 0; // mengembalikan audio ke awal
-  hoverAudio.play(); // memulai audio baru
+  hoverAudio.pause(); 
+  hoverAudio.currentTime = 0; 
+  hoverAudio.play(); 
+});
+
+let clickAudio = new Audio("./lib/audio/click-menu.mp3");
+
+$(document).on("click", ".menu", function() {
+  clickAudio.pause(); 
+  clickAudio.currentTime = 0; 
+  clickAudio.play(); 
 });
   </script>
 </body>
