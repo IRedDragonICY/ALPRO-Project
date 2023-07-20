@@ -6,11 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="./lib/CSS/chessBoard.css" />
   <link rel="stylesheet" href="./lib/CSS/index.css" />
-  <style>
-
-  </style>
 </head>
-
 <body onload="loadSettings()">
   <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
   <div class="container">
@@ -18,7 +14,7 @@
       <h1 onclick="showCredits()">Chess</h1>
       <img onclick="showCredits()" class="logo" src="./lib/imgs/appIcon/chess.png" alt="logo" />
       <div class="container">
-        <div class="menu" onclick="startGame('aivsplayer')">
+        <div class="menu" onclick="showSelectLevel('aivsplayer')">
           <img src="./lib/imgs/menuIcon/versusAI.png" alt="aivsplayer">
           <div>Player Vs AI</div>
         </div>
@@ -98,5 +94,4 @@
     });
   </script>
 </body>
-
 </html>

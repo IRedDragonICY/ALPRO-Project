@@ -9,7 +9,7 @@ const createWindow = () => {
     height: 600,
     autoHideMenuBar: true,
     icon: "app.ico",
-    show: false, // tambahkan ini
+    show: false, 
     webPreferences: {
       preload: path.join(__dirname, "lib/js/preload.js"),
     },
