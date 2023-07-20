@@ -81,21 +81,21 @@
       $(".credits").css("top", top + "px");
     }
 
-let hoverAudio = new Audio("./lib/audio/hover-menu.mp3");
+    let hoverAudio = new Audio("./lib/audio/hover-menu.mp3");
 
-$(document).on("mouseenter", ".menu", function() {
-  hoverAudio.pause(); 
-  hoverAudio.currentTime = 0; 
-  hoverAudio.play(); 
-});
+    $(document).on("mouseenter", ".menu", function () {
+      hoverAudio.pause();
+      hoverAudio.currentTime = 0;
+      hoverAudio.play();
+    });
 
-let clickAudio = new Audio("./lib/audio/click-menu.mp3");
+    let clickAudio = new Audio("./lib/audio/click-menu.mp3");
 
-$(document).on("click", ".menu", function() {
-  clickAudio.pause(); 
-  clickAudio.currentTime = 0; 
-  clickAudio.play(); 
-});
+    $(document).on("click", ".menu", function () {
+      clickAudio.pause();
+      clickAudio.currentTime = 0;
+      clickAudio.play();
+    });
   </script>
 </body>
 
