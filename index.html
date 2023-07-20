@@ -19,19 +19,19 @@
       <img onclick="showCredits()" class="logo" src="./lib/imgs/appIcon/chess.png" alt="logo" />
       <div class="container">
         <div class="menu" onclick="startGame('aivsplayer')">
-          <img src="./lib/imgs/menuIcon/versusAI.png" alt="Image 1">
+          <img src="./lib/imgs/menuIcon/versusAI.png" alt="aivsplayer">
           <div>Player Vs AI</div>
         </div>
         <div class="menu" onclick="startGame('playervsplayer')">
-          <img src="./lib/imgs/menuIcon/versusPlayer.png" alt="Image 2">
+          <img src="./lib/imgs/menuIcon/versusPlayer.png" alt="playerVsplayer">
           <div>Player Vs Player</div>
         </div>
         <div class="menu" onclick="showSettings()">
-          <img src="./lib/imgs/menuIcon/settings.png" alt="Image 3">
+          <img src="./lib/imgs/menuIcon/settings.png" alt="settings">
           <div>Settings</div>
         </div>
         <div class="menu" onclick="window.close()">
-          <img src="./lib/imgs/menuIcon/exit.png" alt="Image 4">
+          <img src="./lib/imgs/menuIcon/exit.png" alt="exit">
           <div>Exit</div>
         </div>
       </div>
@@ -80,12 +80,16 @@
       $(".credits").css("left", left + "px");
       $(".credits").css("top", top + "px");
     }
-    $(".menu").hover(function () {
-      if ($(this).is(":hover")) {
-        const audio = new Audio("./lib/audio/hover-menu.mp3");
-        audio.play();
-      }
-    });
+
+// simpan referensi audio di luar fungsi 
+let hoverAudio = new Audio("./lib/audio/hover-menu.mp3");
+
+// gunakan event delegation pada document
+$(document).on("mouseenter", ".menu", function() {
+  hoverAudio.pause(); // menghentikan audio sebelumnya
+  hoverAudio.currentTime = 0; // mengembalikan audio ke awal
+  hoverAudio.play(); // memulai audio baru
+});
   </script>
 </body>
 
