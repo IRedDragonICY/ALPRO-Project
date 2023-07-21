@@ -61,14 +61,16 @@
   left: 2px;
 }
 
-.board {
-  width: 400px;
-  margin: auto
+.box .board {
+  display: flex;
+  width: 800px;
+  float: left;
 }
 
-.info {
+.box .info {
+  display: flex;
   width: 400px;
-  margin: auto;
+  float: right;
 }
 
 .move-history {
