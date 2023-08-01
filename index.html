@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="./lib/CSS/index.css" />
 </head>
 <body onload="loadSettings()">
-  <audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
+  <div class="background-container">
+    <img class="background" src="./lib/imgs/background.webp" alt="background" />
+  </div><audio src="./lib/audio/background-music.mp3" autoplay loop></audio>
   <div class="container">
     <div class="box">
       <h1 onclick="showCredits()">Chess</h1>
@@ -30,7 +32,7 @@
         </div>
       </div>
       <div id="version">
-        <p>Version 0.0.5</p>
+        <p>Version 0.1.0</p>
       </div>
     </div>
   </div>
@@ -58,38 +60,5 @@
   <script src="./lib/js/jquery-3.2.1.min.js"></script>
   <script src="./lib/js/chess.js"></script>
   <script src="./lib/js/chessMode.js"></script>
-  <script>
-    function showCredits() {
-      $(".credits").fadeIn();
-      $(".credits").removeClass("hidden");
-
-      $(".credits").css("position", "absolute");
-      $(".credits").css("z-index", "999");
-
-      const width = $(".credits").width();
-      const height = $(".credits").height();
-      const left = $(window).width() / 2 - width / 2;
-      const top = $(window).height() / 2 - height / 2;
-
-      $(".credits").css("left", left + "px");
-      $(".credits").css("top", top + "px");
-    }
-
-    let hoverAudio = new Audio("./lib/audio/hover-menu.mp3");
-
-    $(document).on("mouseenter", ".menu", function () {
-      hoverAudio.pause();
-      hoverAudio.currentTime = 0;
-      hoverAudio.play();
-    });
-
-    let clickAudio = new Audio("./lib/audio/click-menu.mp3");
-
-    $(document).on("click", ".menu", function () {
-      clickAudio.pause();
-      clickAudio.currentTime = 0;
-      clickAudio.play();
-    });
-  </script>
 </body>
 </html>
