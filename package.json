@@ -1,6 +1,6 @@
 {
   "name": "chess",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Permainan Catur",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/IRedDragonICY/ALPRO-Project.git"
   },
-  "author": "IRedDragonICY,",
+  "author": "Syifa’ Ayu Sulistyowati – 2200018064, Rendie Abdi Saputra – 2200018094, Kemas Khairunsyah – 2200018155, Dzakiyyah Hanan Izdihar – 2200018202, Laila Nur’azizah – 2200018400, Mohammad Farid Hendianto – 2200018401, Reyhanssan Islamey – 2200018411, M. Jaka Nopriansyah – 2200018451, Fadhil Raifan Andika – 2200018458, Princessca Yudha Cahayanie – 2200018474",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/IRedDragonICY/ALPRO-Project/issues"
@@ -26,7 +26,8 @@
     "@electron-forge/maker-squirrel": "^6.2.1",
     "@electron-forge/maker-zip": "^6.2.1",
     "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
-    "electron": "^25.2.0"
+    "electron": "^25.2.0",
+    "electron-wix-msi": "^5.0.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.0",

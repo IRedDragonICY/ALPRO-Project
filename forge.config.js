@@ -1,28 +1,21 @@
+const path = require('path');
+
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: path.join(__dirname, 'lib/imgs/appIcon/chess.ico'),
   },
   rebuildConfig: {
+    arch: 'ia32',
+    platform: 'win32',
   },
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        setupIcon: './lib/iamgs/appIcon/chess.ico',
+        setupIcon: path.join(__dirname, 'lib/imgs/appIcon/chess.ico'),
+        arch: ['x64', 'ia32'],
       },
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-      icon: './lib/imgs/appIcon/chess.icns',
-    },
-    {
-      name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
     },
   ],
   plugins: [
