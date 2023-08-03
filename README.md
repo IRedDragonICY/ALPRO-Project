@@ -75,7 +75,14 @@ This project is developed and maintained by the following contributors:
 - [Rendie Abdi Saputra]([https://github.com/janesmith](https://github.com/RendieRYU))
 
 And others:
-Syifa’ Ayu Sulistyowati – 2200018064, Kemas Khairunsyah – 2200018155, Dzakiyyah Hanan Izdihar – 2200018202, Laila Nur’azizah , Reyhanssan Islamey – 2200018411, M. Jaka Nopriansyah – 2200018451, Fadhil Raifan Andika – 2200018458, Princessca Yudha Cahayanie – 2200018474
+Syifa’ Ayu Sulistyowati – 2200018064
+Kemas Khairunsyah – 2200018155
+Dzakiyyah Hanan Izdihar – 2200018202
+Laila Nur’azizah
+Reyhanssan Islamey – 2200018411
+M. Jaka Nopriansyah – 2200018451
+Fadhil Raifan Andika – 2200018458
+Princessca Yudha Cahayanie – 2200018474
 
 We would like to express our gratitude to Dr. Ardiansyah S.T., M.Cs for his guidance and expertise throughout the development of this project.
 
